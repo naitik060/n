@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Love Question</title>
+    <style>
+        .container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .yes-btn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+        .no-btn {
+            margin-top: 20px;
+        }
+        .message-screen {
+            display: none;
+            text-align: center;
+            font-size: 2em;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Do you love your school?</p>
+        <button type="button" class="yes-btn">Yes</button><br>
+        <button type="button" id="no-btn" class="no-btn">No</button>
+    </div>
+
+    <div class="message-screen" id="message-screen">
+        Well done, my son
+    </div>
+
+    <script>
+        document.querySelector('.yes-btn').addEventListener('mouseover', function(event) {
+            const btn = event.target;
+            const container = btn.parentElement;
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+
+            let newLeft = Math.random() * (containerRect.width - btnRect.width);
+            let newTop = Math.random() * (containerRect.height - btnRect.height);
+
+            btn.style.left = newLeft + 'px';
+            btn.style.top = newTop + 'px';
+        });
+
+        document.getElementById('no-btn').addEventListener('click', function() {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('message-screen').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
